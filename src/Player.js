@@ -4,14 +4,37 @@ export default class Player {
       this.width = 32
       this.height = 64
       this.x = 50
-      this.y = 100
+      this.y = 300
   
-      this.speedX = 1
+      this.speedX = 0
       this.speedY = 0
+      this.maxSpeed = 10
     }
   
     update(deltaTime) {
-      this.x += this.speedX
+        
+        if(this.y<300){
+            this.speedY = 5
+        }
+        else{
+            this.speedY = 0
+            
+        }
+        
+        if(this.game.keys.includes('ArrowRight')){
+            this.speedX = this.maxSpeed
+        }
+        if(this.game.keys.includes('ArrowLeft')){
+            this.speedX = -this.maxSpeed
+        }
+        if(this.game.keys.includes(' ') && 300 == this.y){
+            this.y-=100
+            
+        }
+        this.x += this.speedX
+        this.y += this.speedY
+        console.log(this.y)
+        this.speedX = 0
     }
   
     draw(context) {

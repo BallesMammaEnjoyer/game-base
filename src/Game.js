@@ -1,4 +1,5 @@
 import Player from "./Player"
+import InputHandler from "./InputHandler"
 
 export default class Game {
   constructor(width, height) {
@@ -10,6 +11,8 @@ export default class Game {
     this.gravity = 1
     this.debug = false
     this.Player = new Player(this)
+    this.input = new InputHandler(this)
+    this.keys = []
   }
 
   update(deltaTime) {
