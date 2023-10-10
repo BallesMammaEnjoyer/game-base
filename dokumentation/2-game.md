@@ -1,6 +1,6 @@
 Spelets logik utgår från klassen Game.
 
-```javascript
+```javascript 
 // Här exporteras Game-klassen som standard (så att den kan användas i andra filer)
 export default class Game {
   // Konstruktorn är en speciell metod som körs när ett nytt Game-objekt skapas
