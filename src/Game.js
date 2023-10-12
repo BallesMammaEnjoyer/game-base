@@ -25,4 +25,9 @@ export default class Game {
   draw(context) {
     this.Player.draw(context)
   }
+
+  
+  
+
+  
 }
