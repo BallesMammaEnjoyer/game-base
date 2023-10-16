@@ -8,13 +8,17 @@ export default class InputHandler {
           event.key === 'ArrowDown' ||
           event.key === 'ArrowLeft' ||
           event.key === ' ' ||
-          event.key === 'ArrowRight') &&
+          event.key === 'ArrowRight' ||
+          event.key === 'A' )&&
         this.game.keys.indexOf(event.key) === -1
       ) {
         this.game.keys.push(event.key)
       }
       if (event.key === 'd') {
         this.game.debug = !this.game.debug
+      }
+      if (event.key === 'A') {
+        this.game.player.shoot()
       }
     })
     window.addEventListener('keyup', (event) => {
