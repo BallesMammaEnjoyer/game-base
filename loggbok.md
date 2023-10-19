@@ -6,3 +6,4 @@ Vad ska du göra idag? Jag ska fortsätta med steg 5 istället för jump
 Vad behöver du lära dig? Jag tror jag behöver lära mig lite om kontroller och arrays/arraylists
 Vad behöver du av Jens? Antagligen hjälp med att få jump att fungera men annars inget hitills.
 Efter lektion: Jag började och är nästan klar med steg 5.
+23/10/19 - kom sent så hann inte jobba mycket, kollade över koden och funderade på hur jag hade gjort en slag funktion

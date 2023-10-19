@@ -12,7 +12,7 @@ export default class Player {
         this.maxSpeed = 10
         this.grounded = false
         this.jumpSpeed = -14
-        this.projectiles = [a]
+        this.projectiles = []
     }
 
     update(deltaTime) {
