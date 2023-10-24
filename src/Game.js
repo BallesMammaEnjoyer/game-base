@@ -1,3 +1,5 @@
+import Slime from "./Slime"
+import UserInterface from "./userInterface"
 import Player from "./Player"
 import InputHandler from "./InputHandler"
 
@@ -12,7 +14,11 @@ export default class Game {
     this.debug = false
     this.Player = new Player(this)
     this.input = new InputHandler(this)
+    this.ui = new UserInterface(this)
     this.keys = []
+    this.enemies = []
+    this.enemyTimer = 0
+    this.enemyInterval = 2000
   }
 
   update(deltaTime) {
@@ -20,10 +26,23 @@ export default class Game {
     if (!this.gameOver) {
       this.gameTime += deltaTime
     }
+    if (this.enemyTimer > this.enemyInterval && !this.gameOver) {
+      this.addEnemy()
+      this.enemyTimer = 0
+    } else {
+      this.enemyTimer += deltaTime
+    }
+    this.enemies.forEach((enemy) => enemy.update(deltaTime))
+    this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
   }
 
   draw(context) {
+    this.ui.draw(context)
     this.Player.draw(context)
+    this.enemies.forEach((enemy) => enemy.draw(context))
+  }
+  addEnemy() {
+    this.enemies.push(new Slime(this))
   }
 
   
