@@ -1,10 +1,10 @@
 import Projectile from "./Projectile"
-import Sprites from "./assets/css/Sprites x2.png"
+import Sprites from "./assets/css/Sprites.png"
 export default class Player {
     constructor(game) {
         this.game = game
-        this.width = 32
-        this.height = 64
+        this.width = 20
+        this.height = 30
         this.x = 50
         this.y = 100
 
@@ -25,7 +25,7 @@ export default class Player {
         this.image = image
 
         //sprite animation
-        this.frameX = 0
+        this.frameX = 0.3
         this.frameY = 1
         this.maxFrame = 8
         this.fps = 20
@@ -130,7 +130,7 @@ export default class Player {
         )
 
         context.restore()
-    }
+    } 
 
     shoot() {
         if (this.shootTimer > this.shootDelay) {
