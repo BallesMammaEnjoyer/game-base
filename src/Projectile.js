@@ -7,12 +7,12 @@ export default class Projectile{
         this.y = y
         this.range = 0
         this.reach = 5
-    
-        this.speed = 10
         this.damage = 1
+        this.speed = 10
         this.markedForDeletion = false
       }
       update() {
+        this.speed = 10
         this.width += 1
         this.height +=1
         this.range += 1

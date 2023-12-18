@@ -1,4 +1,6 @@
-import Slime from "./Slime"
+import Zombie from "./Zombie"
+import Vampire from "./Vampire"
+import Ghost from "./Ghost"
 import UserInterface from "./userInterface"
 import Player from "./Player"
 import InputHandler from "./InputHandler"
@@ -20,7 +22,7 @@ export default class Game {
     this.keys = []
     this.enemies = []
     this.enemyTimer = 0
-    this.enemyInterval = 2000
+    this.enemyInterval = 1000
     this.ground = this.height - 100
     this.platforms = [
       new Platform(this, 0, this.ground, this.width, 100),
@@ -48,7 +50,6 @@ export default class Game {
     this.enemies.forEach((enemy) => {
       enemy.update(deltaTime)
       if (this.checkCollision(this.player, enemy)) {
-        
       }
       this.player.projectiles.forEach((projectile) => {
         if (this.checkCollision(projectile, enemy)) {
@@ -72,9 +73,10 @@ export default class Game {
 
   }
   draw(context) {
+    this.platforms.forEach((platform) => platform.draw(context))
     this.ui.draw(context)
     this.camera.apply(context)
-   // this.level.draw(context)
+    // this.level.draw(context)
     this.player.draw(context, this.camera.x, this.camera.y)
     this.enemies.forEach((enemy) =>
       enemy.draw(context, this.camera.x, this.camera.y)
@@ -83,11 +85,25 @@ export default class Game {
   }
 
   addEnemy() {
-    this.enemies.push(new Slime(this))
+    this.spawn = Math.floor(Math.random() * 3);
+    console.log(this.spawn)
+    if (this.spawn == 0) {
+      this.enemies.push(new Zombie(this))
+    }
+    else{
+      if (this.spawn == 1){
+        this.enemies.push(new Ghost(this))
+      }
+      else{
+        this.enemies.push(new Vampire(this))
+      }
+
+    }
+    
   }
 
   checkCollision(object1, object2) {
-    
+
     return (
       object1.x < object2.x + object2.width &&
       object1.x + object1.width > object2.x &&

@@ -16,7 +16,7 @@ export default class Player {
         this.jumpInterval = 600
         this.grounded = false
         this.projectiles = []
-        this.shootTimer = 0.5
+        this.shootTimer = 1
         this.shootDelay = 100
 
         //sprite image
@@ -44,7 +44,7 @@ export default class Player {
     }
 
     update(deltaTime) {
-        if (this.shootTimer < this.shootDelay) {
+        if (this.shootTimer <= this.shootDelay) {
             this.shootTimer += deltaTime
         }
         if (this.grounded) {
@@ -77,10 +77,18 @@ export default class Player {
         // projectiles
         this.projectiles.forEach((projectile) => {
             projectile.update()
+            
         })
         this.projectiles = this.projectiles.filter(
             (projectile) => !projectile.markedForDeletion
         )
+
+        // flip sprite direction
+        if (this.speedX < 0) {
+            this.flip = true
+        } else if (this.speedX > 0) {
+            this.flip = false
+        }
 
         // play run or idle animation
         if (this.speedX !== 0) {
@@ -152,7 +160,10 @@ export default class Player {
             this.shootTimer = 0
             this.projectiles.push(
                 new Projectile(this.game, this.x + this.width, this.y + this.height / 2)
+                
+                
             )
+            
 
         }
     }
